@@ -59,5 +59,16 @@ export const $login = (params, mode) =>{
     else{
         return null;
     }
+}
 
+//用户查询预约
+export function checkAllAppointment(){
+    return axios({
+        method: "GET",
+        url: "/appointments/getAllAppointment",
+        headers: {
+            'Context-Type': 'application/json'
+        }}).then(response => {
+            console.log(response)
+    })
 }

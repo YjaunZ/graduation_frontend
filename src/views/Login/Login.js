@@ -12,8 +12,6 @@ let mode = 0;
 export function Login(){
     //导航
     let navigate = useNavigate();
-    //表单
-    let [form] = Form.useForm();
     //按钮互斥效果
     const [disabled1, setDisabled1] = useState(false);
     const [disabled2, setDisabled2] = useState(false);
@@ -23,17 +21,16 @@ export function Login(){
     let [notiState, setNotiState] = useState({type: '', description: ''})
     //表单成功提交方法
     const onFinish = (values) => {
-        let {message, statusCode} = $login(values, mode).then(
+        let {statusCode} = $login(values, mode).then(
             response =>{
-                message = response.data;
                 // console.log(message)
                 statusCode = response.data.statusCode;
                 // console.log(statusCode)
                 //状态码为成功
                 if(statusCode === 1){
-                    //设置session
-                    sessionStorage.setItem('token', response.data.token);
-                    console.log(response.data)
+                    // //设置session
+                    // sessionStorage.setItem('token', response.data.token);
+                    // console.log(response.data)
                     setNotiState({type: 'success', description: "登录成功"})
                     // console.log("mode = ", mode);
                     //跳转到功能页面

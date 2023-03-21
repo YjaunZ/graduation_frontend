@@ -1,12 +1,12 @@
-import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined, LogoutOutlined} from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import {DesktopOutlined, FileOutlined, UserOutlined, LogoutOutlined} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import { useNavigate, Outlet} from "react-router-dom";
 
 
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const {  Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
         key,
@@ -27,7 +27,6 @@ const items = [
 const UserFunctionPage = () => {
     const navigate = useNavigate()
     const onClickMenu = (e) => {
-        console.log(e)
         switch (e.key){
             case 'userAppointment':
                 navigate("/UserFunctionPage/userAppointment");
@@ -44,12 +43,14 @@ const UserFunctionPage = () => {
             case 'exit':
                 navigate("/");
                 break;
+            default:
+                break;
         }
     }
     const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+    // const {
+    //     token: { colorBgContainer },
+    // } = theme.useToken();
     return (
         <Layout
             style={{
