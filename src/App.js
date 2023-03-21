@@ -15,11 +15,12 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Login/>}/>
-                <Route path='/UserFunctionPage' element={<UserFunctionPage/>}/>
-                    <Route path='userAppointment' element={<UserAppointment/>}></Route>
+                <Route path='/UserFunctionPage' element={<UserFunctionPage/>}>
+                    <Route path='userAppointment' element={<UserAppointment/>}/>
                     <Route path='userInfo' element={<UserInfo/>}></Route>
-                    <Route path='userInfoAppointment' element={<UserInfoAppointment/>}></Route>
-                    <Route path='userResult' element={<UserResult/>}></Route>
+                    <Route path='userInfoAppointment' element={<UserInfoAppointment/>}/>
+                    <Route path='userResult' element={<UserResult/>}/>
+                </Route>
                 <Route path='/DoctorFunctionPage' element={<DoctorFunctionPage/>}/>
                 <Route path='/ManagerFunctionPage' element={<ManagerFunctionPage/>}/>
             </Routes>

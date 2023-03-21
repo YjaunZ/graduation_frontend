@@ -16,12 +16,12 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem('体检预约', 'appoint', <DesktopOutlined />),
+    getItem('体检预约', 'userAppointment', <DesktopOutlined />),
     getItem('我的', 'sub1', <UserOutlined />, [
-        getItem('我的预约', 'myappoint'),
-        getItem('我的信息', 'myinfo'),
+        getItem('我的预约', 'userInfoAppointment'),
+        getItem('我的信息', 'userInfo'),
     ]),
-    getItem('体检报告', 'report', <FileOutlined />),
+    getItem('体检报告', 'userResult', <FileOutlined />),
     getItem('退出系统', 'exit', <LogoutOutlined />),
 ];
 const UserFunctionPage = () => {
@@ -29,10 +29,21 @@ const UserFunctionPage = () => {
     const onClickMenu = (e) => {
         console.log(e)
         switch (e.key){
-            case 'exit':
-                navigate("/")
+            case 'userAppointment':
+                navigate("/UserFunctionPage/userAppointment");
                 break;
-
+            case 'userInfo':
+                navigate("/UserFunctionPage/userInfo");
+                break;
+            case 'userInfoAppointment':
+                navigate("/UserFunctionPage/userInfoAppointment");
+                break;
+            case 'userResult':
+                navigate("/UserFunctionPage/userResult");
+                break;
+            case 'exit':
+                navigate("/");
+                break;
         }
     }
     const [collapsed, setCollapsed] = useState(false);
@@ -59,16 +70,9 @@ const UserFunctionPage = () => {
                     }}
                 >
 
-                    <div
-                        style={{
-                            padding: 24,
-                            minHeight: 360,
-                            background: colorBgContainer,
-                        }}
-                    >
-                        Bill is a cat.
-                    </div>
-                    <Outlet></Outlet>
+                <Outlet>
+
+                </Outlet>
                 </Content>
                 <Footer
                     style={{
