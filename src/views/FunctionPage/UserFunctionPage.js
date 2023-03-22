@@ -2,9 +2,7 @@ import {DesktopOutlined, FileOutlined, UserOutlined, LogoutOutlined} from '@ant-
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import { useNavigate, Outlet} from "react-router-dom";
-
-
-
+import {$checkUserAppointment} from "../../api/api";
 
 const {  Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -25,19 +23,29 @@ const items = [
     getItem('退出系统', 'exit', <LogoutOutlined />),
 ];
 const UserFunctionPage = () => {
+    let [shown, setshown] = useState(true);
+    let [userData, setUserData] = useState({})
     const navigate = useNavigate()
     const onClickMenu = (e) => {
         switch (e.key){
             case 'userAppointment':
+                setshown(false);
                 navigate("/UserFunctionPage/userAppointment");
                 break;
             case 'userInfo':
+                setshown(false);
                 navigate("/UserFunctionPage/userInfo");
                 break;
             case 'userInfoAppointment':
+                setshown(false);
                 navigate("/UserFunctionPage/userInfoAppointment");
+                $checkUserAppointment().then(response => {
+                    setUserData(response.data.data);
+                    console.log(userData)
+                })
                 break;
             case 'userResult':
+                setshown(false);
                 navigate("/UserFunctionPage/userResult");
                 break;
             case 'exit':
@@ -70,10 +78,13 @@ const UserFunctionPage = () => {
 
                     }}
                 >
+                    <div style={{display: shown?'flex':'none', fontSize:'40px', justifyContent:'center', alignItems:'center', marginTop:'40vh'}}>
+                        欢迎使用预约系统
+                    </div>
 
-                <Outlet>
+                    <Outlet>
 
-                </Outlet>
+                    </Outlet>
                 </Content>
                 <Footer
                     style={{

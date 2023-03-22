@@ -50,7 +50,7 @@ export const $login = (params, mode) =>{
                 data: params
             }
         ).then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             return response;
         }).catch(err =>{
             console.log(err);
@@ -62,13 +62,18 @@ export const $login = (params, mode) =>{
 }
 
 //用户查询预约
-export function checkAllAppointment(){
+export function $checkUserAppointment(){
     return axios({
         method: "GET",
-        url: "/appointments/getAllAppointment",
-        headers: {
-            'Context-Type': 'application/json'
-        }}).then(response => {
-            console.log(response)
-    })
+        params: {
+            id: localStorage.getItem('id')
+        },
+        url: "/appointments/getUserAppointment",
+        }).then(response => {
+            // console.log(localStorage.getItem('id'));
+            // console.log(response.data.data);
+            return response;
+        }).catch(error => {
+            console.log(error);
+        })
 }

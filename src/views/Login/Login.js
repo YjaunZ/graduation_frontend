@@ -23,16 +23,15 @@ export function Login(){
     const onFinish = (values) => {
         let {statusCode} = $login(values, mode).then(
             response =>{
-                // console.log(message)
+                // console.log(response)
                 statusCode = response.data.statusCode;
-                // console.log(statusCode)
                 //状态码为成功
                 if(statusCode === 1){
-                    // //设置session
-                    // sessionStorage.setItem('token', response.data.token);
-                    // console.log(response.data)
                     setNotiState({type: 'success', description: "登录成功"})
-                    // console.log("mode = ", mode);
+                    //用户id保存在浏览器
+                    // console.log(response.data)
+                    // console.log(response.data.data.id);
+                    localStorage.setItem('id', response.data.data.id);
                     //跳转到功能页面
                     if(mode === 1){
                         navigate('/UserFunctionPage');
